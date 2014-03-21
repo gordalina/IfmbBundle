@@ -1,0 +1,25 @@
+{
+    "name": "gordalina/ifmb-bundle",
+    "description": "Ifthensoftware IFmb integration into Symfony2",
+    "require": {
+        "php": ">=5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "@stable",
+        "symfony/http-foundation": "@stable",
+        "symfony/event-dispatcher": "@stable",
+        "symfony/monolog-bundle": "@stable",
+        "sensio/framework-extra-bundle": "@stable"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Samuel Gordalina",
+            "email": "samuel.gordalina@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": { "Gordalina\\Bundle\\IfmbBundle\\": "." }
+    }
+}

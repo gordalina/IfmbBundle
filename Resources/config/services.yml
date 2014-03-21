@@ -1,0 +1,13 @@
+parameters:
+    gordalina_ifmb.client.class: Gordalina\Bundle\IfmbBundle\Service\Client
+    gordalina_ifmb.refmb.class: Gordalina\Bundle\IfmbBundle\Service\RefMb
+
+services:
+    gordalina_ifmb.client:
+        class: %gordalina_ifmb.client.class%
+        arguments:
+            - %gordalina_ifmb.config.api_endpoint%
+            - %gordalina_ifmb.config.backoffice_key%
+            - %gordalina_ifmb.config.sandbox%
+    gordalina_ifmb.refmb:
+        class: %gordalina_ifmb.refmb.class%

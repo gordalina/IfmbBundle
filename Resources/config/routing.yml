@@ -1,0 +1,3 @@
+gordalina_ifmb_callback:
+    pattern:  /ifmb/payment-notification
+    defaults: { _controller: GordalinaIfmbBundle:Callback:index }
