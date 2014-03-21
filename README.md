@@ -54,7 +54,7 @@ gordalina_ifmb:
 ```
 
 The callback URL that you need to provide to ifthensoftware will be your
-`http://domin/<your prefix>/ifmb/payment-notification`
+`http://domain.com/<your prefix>/ifmb/payment-notification`
 
 Usage
 -----
