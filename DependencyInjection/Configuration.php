@@ -52,7 +52,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('sub_entity')->defaultNull()->end()
                 ->scalarNode('backoffice_key')->defaultNull()->end()
                 ->scalarNode('anti_phishing_key')->defaultNull()->end()
-                ->scalarNode('api_endpoint')->defaultValue('http://www.ifthensoftware.com/IfmbWS/WsIfmb.asmx')->end()
+                ->scalarNode('api_endpoint')->defaultValue('https://www.ifthensoftware.com/IfmbWS/WsIfmb.asmx')->end()
                 ->booleanNode('sandbox')->defaultValue($this->debug)->end()
             ->end()
         ;
