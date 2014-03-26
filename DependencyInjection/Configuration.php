@@ -48,8 +48,10 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('anti_phishing_key')->end()
+                ->scalarNode('entity')->end()
+                ->scalarNode('sub_entity')->end()
                 ->scalarNode('backoffice_key')->end()
+                ->scalarNode('anti_phishing_key')->end()
                 ->scalarNode('api_endpoint')->defaultValue('http://www.ifthensoftware.com/IfmbWS/WsIfmb.asmx')->end()
                 ->booleanNode('sandbox')->defaultValue($this->debug)->end()
             ->end()

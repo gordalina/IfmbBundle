@@ -11,3 +11,6 @@ services:
             - %gordalina_ifmb.config.sandbox%
     gordalina_ifmb.refmb:
         class: %gordalina_ifmb.refmb.class%
+        calls:
+            - ['setEntity', [ %gordalina_ifmb.config.entity% ]]
+            - ['setSubEntity', [ %gordalina_ifmb.config.sub_entity% ]]

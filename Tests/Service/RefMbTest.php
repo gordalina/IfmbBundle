@@ -28,7 +28,7 @@ class RefMbTest extends \PHPUnit_Framework_TestCase
     public function testSimple($entity, $subEntity, $order, $value, array $results)
     {
         $ref = new RefMb();
-        $this->assertSame($results, $ref->generate($entity, $subEntity, $order, $value));
+        $this->assertSame($results, $ref->generate($order, $value, $entity, $subEntity));
     }
 
     /**
@@ -48,7 +48,7 @@ class RefMbTest extends \PHPUnit_Framework_TestCase
     public function testInvalidSubEntity()
     {
         $ref = new RefMb();
-        $ref->generate(12312, 1, 123, 123);
+        $ref->generate(123, 123, 12312, 1);
     }
 
     /**
@@ -58,7 +58,7 @@ class RefMbTest extends \PHPUnit_Framework_TestCase
     public function testInvalidLowerBoundValue()
     {
         $ref = new RefMb();
-        $ref->generate(12312, 123, 123, 0.99);
+        $ref->generate(123, 0.99, 12312, 123);
     }
 
     /**
@@ -68,7 +68,7 @@ class RefMbTest extends \PHPUnit_Framework_TestCase
     public function testInvalidHigherBoundValue()
     {
         $ref = new RefMb();
-        $ref->generate(12312, 123, 123, 1000000);
+        $ref->generate(123, 1000000, 12312, 123);
     }
 
     public function validReferencesProvider()

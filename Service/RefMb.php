@@ -14,15 +14,59 @@ namespace Gordalina\Bundle\IfmbBundle\Service;
 class RefMb
 {
     /**
-     * @param  mixed $entity
-     * @param  mixed $subEntity
+     * @var string
+     */
+    protected $entity;
+
+    /**
+     * @var string
+     */
+    protected $subEntity;
+
+    /**
+     * @param string $entity
+     */
+    public function setEntity($entity)
+    {
+        $this->entity = $entity;
+    }
+
+    /**
+     * @param string $subEntity
+     */
+    public function setSubEntity($subEntity)
+    {
+        $this->subEntity = $subEntity;
+    }
+
+    /**
      * @param  mixed $order
      * @param  mixed $value
+     * @param  mixed $entity    defaults to null
+     * @param  mixed $subEntity defaults to null
      * @return array
      */
-    public function generate($entity, $subEntity, $order, $value)
+    public function generate($order, $value, $entity = null, $subEntity = null)
     {
-        $entity = (string) $entity;
+        if ($entity === null) {
+            if ($this->entity === null) {
+                throw new \InvalidArgumentException('Please provide an entity, either by configuration or in parameter');
+            }
+
+            $entity = $this->entity;
+        } else {
+            $entity = (string) $entity;
+        }
+
+        if ($subEntity === null) {
+            if ($this->subEntity === null) {
+                throw new \InvalidArgumentException('Please provide an subEntity, either by configuration or in parameter');
+            }
+
+            $subEntity = $this->subEntity;
+        } else {
+            $subEntity = (string) $subEntity;
+        }
 
         if (strlen($entity) !== 5) {
             throw new \InvalidArgumentException(sprintf('Entity "%s" must be 5 digits in length', $entity));
