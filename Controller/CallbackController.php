@@ -27,11 +27,13 @@ class CallbackController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $givenKey = $request->query->get('chave');
-        $allowedKey = $this->container->getParameter('gordalina_ifmb.anti_phishing_key');
+        if ($this->container->hasParameter('gordalina_ifmb.anti_phishing_key')) {
+            $givenKey = $request->query->get('chave');
+            $allowedKey = $this->container->getParameter('gordalina_ifmb.anti_phishing_key');
 
-        if (strcmp($givenKey, $allowedKey) !== 0) {
-            return Response::create('', Response::HTTP_UNAUTHORIZED);
+            if (strcmp($givenKey, $allowedKey) !== 0) {
+                return Response::create('', Response::HTTP_UNAUTHORIZED);
+            }
         }
 
         $paymentNotification = PaymentNotification::fromRequest($request);
