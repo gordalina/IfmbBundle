@@ -35,13 +35,29 @@ class Client
      * @param string $key
      * @param string $sandbox
      */
-    public function __construct($endpoint, $key, $sandbox)
+    public function __construct($endpoint, $sandbox)
     {
         $this->endpoint = $endpoint;
-        $this->key = $key;
         $this->sandbox = $sandbox;
     }
 
+    /**
+     * @param string $key
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
+    }
+
+    /**
+     * @param  string           $entity
+     * @param  string           $subEntity
+     * @param  \DateTime|string $dateStart  optional
+     * @param  \DateTime|string $dateEnd    optional
+     * @param  string           $reference  optional
+     * @param  string           $value      optional
+     * @return array
+     */
     public function getPayments(
         $entity,
         $subEntity,
@@ -50,13 +66,20 @@ class Client
         $reference = null,
         $value = null
     ) {
-        if ($dateStart instanceof \DateTime) {
-            $dateStart = $dateStart->format(self::DATE_FORMAT);
+        if ($this->key === null) {
+            throw new \LogicException("Backoffice key must be set in configuration or in client instance");
         }
 
-        if ($dateEnd instanceof \DateTime) {
-            $dateEnd = $dateEnd->format(self::DATE_FORMAT);
+        if ($dateStart instanceof \DateTime === false) {
+            $dateStart = new \DateTime($dateStart);
         }
+
+        if ($dateEnd instanceof \DateTime === false) {
+            $dateEnd = new \DateTime($dateEnd);
+        }
+
+        $dateStart = $dateStart->format(self::DATE_FORMAT);
+        $dateEnd = $dateEnd->format(self::DATE_FORMAT);
 
         $query = array(
             'chavebackoffice' => $this->key,

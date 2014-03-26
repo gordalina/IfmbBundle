@@ -7,8 +7,9 @@ services:
         class: %gordalina_ifmb.client.class%
         arguments:
             - %gordalina_ifmb.config.api_endpoint%
-            - %gordalina_ifmb.config.backoffice_key%
             - %gordalina_ifmb.config.sandbox%
+        calls:
+            - ['setKey', [ %gordalina_ifmb.config.backoffice_key% ]]
     gordalina_ifmb.refmb:
         class: %gordalina_ifmb.refmb.class%
         calls:

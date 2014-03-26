@@ -26,10 +26,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function testGetPayments()
     {
         $client = $this->getMockBuilder('Gordalina\Bundle\IfmbBundle\Service\Client')
-            ->setConstructorArgs(array('endpoint', 'key', true))
+            ->setConstructorArgs(array('endpoint', true))
             ->setMethods(array('call'))
             ->getMock();
 
+        $client->setKey('key');
         $client->expects($this->once())
                ->method('call')
                ->will($this->returnCallback(array($this, 'callbackTestGetPayments')));
