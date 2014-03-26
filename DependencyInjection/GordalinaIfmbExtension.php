@@ -34,19 +34,10 @@ class GordalinaIfmbExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        if (isset($config['anti_phishing_key'])) {
-            $container->setParameter('gordalina_ifmb.config.anti_phishing_key', $config['anti_phishing_key']);
-        }
-
-        if (isset($config['entity'])) {
-            $container->setParameter('gordalina_ifmb.config.entity', $config['entity']);
-        }
-
-        if (isset($config['sub_entity'])) {
-            $container->setParameter('gordalina_ifmb.config.sub_entity', $config['sub_entity']);
-        }
-
-        $container->setParameter('gordalina_ifmb.config.backoffice_key', isset($config['backoffice_key']) ? $config['backoffice_key'] : null);
+        $container->setParameter('gordalina_ifmb.config.entity', $config['entity']);
+        $container->setParameter('gordalina_ifmb.config.sub_entity', $config['sub_entity']);
+        $container->setParameter('gordalina_ifmb.config.anti_phishing_key', $config['anti_phishing_key']);
+        $container->setParameter('gordalina_ifmb.config.backoffice_key', $config['backoffice_key']);
         $container->setParameter('gordalina_ifmb.config.api_endpoint', $config['api_endpoint']);
         $container->setParameter('gordalina_ifmb.config.sandbox', $config['sandbox']);
     }
