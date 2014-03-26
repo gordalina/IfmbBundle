@@ -41,19 +41,26 @@ class PaymentNotification
     protected $terminal;
 
     /**
+     * @var string
+     */
+    protected $key;
+
+    /**
      * @param string $entity
      * @param string $reference
      * @param string $value
      * @param mixed  $date
      * @param string $terminal
+     * @param string $key
      */
-    public function __construct($entity, $reference, $value, $date, $terminal)
+    public function __construct($entity, $reference, $value, $date, $terminal, $key)
     {
         $this->entity = $entity;
         $this->reference = $reference;
         $this->value = $value;
         $this->date = $date;
         $this->terminal = $terminal;
+        $this->key = $key;
 
         if ($this->date instanceof \DateTime === false && $this->date !== null) {
             $this->date = \DateTime::createFromFormat('d-m-Y H:i:s', $this->date);
@@ -71,7 +78,8 @@ class PaymentNotification
             $request->query->get('referencia'),
             $request->query->get('valor'),
             $request->query->get('datahorapag', null),
-            $request->query->get('terminal', null)
+            $request->query->get('terminal', null),
+            $request->query->get('chave')
         );
     }
 
@@ -113,5 +121,14 @@ class PaymentNotification
     public function getTerminal()
     {
         return $this->terminal;
+    }
+
+    /**
+     * @param  string $key
+     * @return boolean
+     */
+    public function matchesKey($key)
+    {
+        return $this->key === $key;
     }
 }
