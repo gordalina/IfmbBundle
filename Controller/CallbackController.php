@@ -62,7 +62,14 @@ class CallbackController extends Controller
             $this->get('logger')->critical(
                 'Exception ocurred when processing a payment notification (IfmbBundle)',
                 array(
-                    'stacktrace' => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
+                    'exception' => array(
+                        'class' => get_class($e),
+                        'message' => $e->getMessage(),
+                        'code' => $e->getCode(),
+                        'file' => $e->getFile(),
+                        'line' => $e->getLine(),
+                        'trace' => $e->getTraceAsString()
+                    ),
                     'model' => array(
                         'entity' => $paymentNotification->getEntity(),
                         'reference' => $paymentNotification->getReference(),
