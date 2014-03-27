@@ -124,6 +124,14 @@ class PaymentNotification
     }
 
     /**
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
      * @param  string $key
      * @return boolean
      */
